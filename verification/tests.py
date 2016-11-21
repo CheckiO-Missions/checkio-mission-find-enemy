@@ -46,5 +46,20 @@ TESTS = {
             "answer": ['L', 12]
         },
 
-    ]
+    ],
+
+	"Extra": [
+		{
+			"input": ['C3', 'SE', 'A1'],
+			"answer": ['B', 3]
+		},
+		{
+			"input": ['D3', 'E', 'A1'],
+			"answer": ['L', 4]
+		},
+        {
+            "input": ['A1', 'SW', 'Z9'],
+            "answer": ['B', 25]
+        },
+	],
 }
