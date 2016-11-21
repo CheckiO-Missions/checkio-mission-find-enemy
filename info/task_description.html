@@ -2,46 +2,33 @@
 Find distance and direction to enemy in a HEX-grid
 </p>
 
-<pre>
 
-HEX-grid
+<p><center>HEX-grid</center></p>
 
- __    __    __    
-/A1\__/C1\__/E1\__/
-\__/B1\__/D1\__/F1\
-/A2\__/C2\__/E2\__/
-\__/B2\__/D2\__/F2\
-/A3\__/C3\__/E3\__/
-\__/B3\__/D3\__/F3\
-/A4\__/C4\__/E4\__/
-
-Absolute Directions
-    __
- __/N \__
-/NW\__/NE\
-\__/Δ \__/
-/SW\__/SE\
-\__/S \__/
-   \__/
-
-Relative Directions
-* if your absolute directions is "N"
-
- __    __    __    __ 
-/F \__/F \__/F \__/F \
-\__/F \__/F \__/F \__/
-/L \__/F \__/F \__/R \
-\__/L \__/F \__/R \__/
-/L \__/L \__/R \__/R \
-\__/L \__/Δ \__/R \__/
-/L \__/L \__/R \__/R \
-\__/L \__/B \__/R \__/
-/L \__/B \__/B \__/R \
-\__/B \__/B \__/B \__/
-/B \__/B \__/B \__/B \
+<p style="text-align: center;">
+    <img src="{{MEDIA}}grid.png"
+         alt="HEX-Grid"
+         style="max-height: 195px"/>
+</p>
 
 
-</pre>
+<p><center>Absolute Directions</center></p>
+
+<p style="text-align: center;">
+    <img src="{{MEDIA}}directions.png"
+         alt="Directions"
+         style="max-height: 127px"/>
+</p>
+
+<p><center>Relative Directions</center></p>
+<p>* if your absolute directions is "N"</p>
+
+<p style="text-align: center;">
+    <img src="{{MEDIA}}relative_directions.png"
+         alt="Relative Directions"
+         style="max-height: 210px"/>
+</p>
+
 
 <p><strong>Input: </strong>three arguments, your corrent coordinates, your current absolute direction, enemy's coordinates.</p>
 
@@ -55,6 +42,12 @@ Relative Directions
 find_enemy('A2', 'N', 'A1') == ['F', 1]
 {% endif %}</pre>
 </div>
+
+<p style="text-align: center;">
+    <img src="{{MEDIA}}example.png"
+         alt="Example"
+         style="max-height: 224px"/>
+</p>
 <br />
 <p>
     <strong>How it is used:</strong>
