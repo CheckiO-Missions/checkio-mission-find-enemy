@@ -54,7 +54,7 @@ TESTS = {
 			"answer": ['B', 3]
 		},
 		{
-			"input": ['D3', 'E', 'A1'],
+			"input": ['D3', 'NE', 'A1'],
 			"answer": ['L', 4]
 		},
         {
