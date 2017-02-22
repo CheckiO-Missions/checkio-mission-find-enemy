@@ -11,7 +11,7 @@ api.add_listener(
         tests=TESTS,
         function_name={
             "python": "find_enemy",
-            "js": "stepsToConvert"
+            "js": "findEnemy"
         },
         cover_code={
             'python-27': cover_codes.unwrap_args,
