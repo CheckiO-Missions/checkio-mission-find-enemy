@@ -1,56 +1,78 @@
 <p>
-Find the distance and directions to an enemy in a HEX-grid.
+    Знайди відстань і відносний напрямок до ворога у гексагональній сітці.
 </p>
-
-<p>HEX-grid</p>
 
 <p>
-    <img src="{{MEDIA}}grid.png"
-         alt="HEX-Grid"
-         style="max-height: 237px"/>
+    Гексагональна сітка - це система координат, як і квадратна сітка. Щоб знайти відстань
+    між двома комірками, тобі не потрібно шукати конкретний шлях від однієї до іншої,
+    а лише коректно опрацювати їх координати.
 </p>
-
-
-<p>Absolute Directions</p>
+<p>
+    Інший підхід до обчислення відстані - це звернути увагу, що всі комірки безпосередньо
+    навколо твоєї комірки утворюють щось на зразок кола і знаходяться на відстані 1
+    від твоєї комірки, всі наступні комірки зовні цих попередніх (наступне "коло")
+    знаходяться на відстані 2 від твоєї комірки і т.д.
+</p>
+<p>
+    У цій місії поле від "A1" to "Z9" використовується для розміщення твого гравця
+    і ворога, але ти також можеш використовувати координати "зовні" цього поля 
+    для своїх розрахунків.
+    Будь уважний до випадків, коли позиція твого гравця знаходиться на краю ігрового поля.
+</p>
 
 <p>
-    <img src="{{MEDIA}}directions.png"
-         alt="Directions"
-         style="max-height: 159px"/>
+    <img src="{{MEDIA}}grid.png" alt="HEX-Grid" style="max-height: 237px"/>
 </p>
 
-<p>Relative Directions</p>
-<p>* if your absolute directions are "N"</p>
 
 <p>
-    <img src="{{MEDIA}}relative_directions.png"
-         alt="Relative Directions"
-         style="max-height: 245px"/>
+    Абсолютні напрямки. Якщо ми візьмемо будь-яку комірку, то комірка зверху від неї
+    буде завжди на північ ("N"), знизу - на південь ("S") і т.д.
 </p>
 
-<p><strong>Input: </strong>Three arguments: your current coordinates, your current absolute directions, and enemy's coordinates.</p>
+<p>
+    <img src="{{MEDIA}}directions.png" alt="Directions" style="max-height: 159px"/>
+</p>
 
-<p><strong>Output: </strong>A list with relative directions and distance to the enemy.</p>
+<p>
+    Відносні координати залежать від твого абсолютного напрямку. Якщо він у тебе
+    на північ ("N"), то відносні напрямки наступні. Отже, всі комірки навколо
+    конкретної комірки утворюють 4 "сектори": прямо, праворуч, позаду і ліворуч.
+    Вважаємо, що в цих секторах також присутні всі комірки "зовні" ігрового поля.
+</p>
+
+<p>
+    <img src="{{MEDIA}}relative_directions.png" alt="Relative Directions" style="max-height: 245px"/>
+</p>
+
+<p>
+    Та коли твій абсолютний напрямок стане наприклад "SE", ці "sectors" провернуться
+    і комірка прямо перед твоєю коміркою, буде на південний схід від неї, а комірка
+    на північний напрямок від тебе буде вже у лівому секторі.
+</p>
+
+<p><strong>Вхідні дані:</strong>Три аргументи: поточні координати твого гравця, його абсолютний напрямок і координати ворога.</p>
+
+<p><strong>Вихідні дані:</strong>{% if is_js %}Масив{% else %}Список{% endif %} із відносним напрямком і відстанню до ворога.</p>
 
 <div class="for_info_only">
-    <p><strong>Example:</strong></p>
-<pre class="brush: {% if is_js %}javascript{% else %}python{% endif %}">{{init_code_tmpl}}</pre>
+    <p><strong>Приклад:</strong></p>
+    <pre class="brush: {% if is_js %}javascript{% else %}python{% endif %}">{% if is_js %}findEnemy{% else %}find_enemy{% endif %}('B2', 'S', 'B4') == ['F', 2]</pre>
 </div>
 
 <p>
-    <img src="{{MEDIA}}example.png"
-         alt="Example"
-         style="max-height: 279px"/>
+    <img src="{{MEDIA}}example.png" alt="Example" style="max-height: 279px"/>
 </p>
 <br />
 <p>
-    <strong>How it is used:</strong>
-    <p>War-game design using hex-grid.</p>
+    <strong>Як це використовується:</strong>
+    <p>В дизайні комп'ютерних ігор часто використовується гексагональна система координат.</p>
 </p>
 
 <p>
-    <strong>Precondition:</strong><br>
-    'A1' &le; coordinates &le; 'Z9'.<br>
-    direction in ('N', 'NE', 'SE', 'S', 'SW', 'NW').<br>
-    your coordinates &ne; enemy's coordinates.
+    <strong>Передумови:</strong>
+    <li>'A1' &le; координати &le; 'Z9';</li>
+    <li>абсолютний напрямок в ('N', 'NE', 'SE', 'S', 'SW', 'NW');</li>
+    <li>координати гравця &ne; координатам ворога.</li>
 </p>
+    
