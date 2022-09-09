@@ -1,8 +1,19 @@
 <p>
-Find the distance and directions to an enemy in a HEX-grid.
+Find the distance and relative direction to the enemy in a HEX-grid.
 </p>
 
-<p>HEX-grid</p>
+<p>
+HEX-grid (hexagonal grid) is a coordinate system, like square grid. To find distance
+between two cells you don't need to find exact path from one to another, but 
+correctly work with their coordinates.
+Another approach to calculate distance is
+to notice that all cells strict around your sell form a kind of circle and are on
+distance 1 from your cell, the cells around all previous cells (next "circle") are
+on distance 2 etc.
+In this mission the field from "A1" to "Z9" is used for placing you
+and enemy, but you may need to use coordinates "outside" this field for your calculations.
+Be attentive to cases when your position is on the edge of the field.
+</p>
 
 <p>
     <img src="{{MEDIA}}grid.png"
@@ -11,7 +22,9 @@ Find the distance and directions to an enemy in a HEX-grid.
 </p>
 
 
-<p>Absolute Directions</p>
+<p>Absolute Directions. If we take any cell, the cell above it is always to the
+    north ("N"), below - to the south ("S") etc.
+</p>
 
 <p>
     <img src="{{MEDIA}}directions.png"
@@ -19,8 +32,12 @@ Find the distance and directions to an enemy in a HEX-grid.
          style="max-height: 159px"/>
 </p>
 
-<p>Relative Directions</p>
-<p>* if your absolute directions are "N"</p>
+<p>
+    Relative Directions depends of your absolute direction. if your absolute direction is "N",
+    relative directions are the following. So all cells around specific cell form
+    4 "sectors": forward, right, back and left. Cells considered as present in this
+    sectors, even if they are "outside" of our field.
+</p>
 
 <p>
     <img src="{{MEDIA}}relative_directions.png"
@@ -28,17 +45,19 @@ Find the distance and directions to an enemy in a HEX-grid.
          style="max-height: 245px"/>
 </p>
 
-<p><strong>Input: </strong>Three arguments: your current coordinates, your current absolute directions, and enemy's coordinates.</p>
+<p>
+    But when your absolute direction is for example "SE" these "sectors" rotate and the cell
+    in front of your cell will be to the south-east, and the north absolute
+    direction will be in left sector.
+</p>
 
-<p><strong>Output: </strong>A list with relative directions and distance to the enemy.</p>
+<p><strong>Input:</strong>Three arguments: your current coordinates, your current absolute directions, and enemy's coordinates.</p>
+
+<p><strong>Output:</strong>{% if is_js %}An array{% else %}A list{% endif %} with relative direction and distance to the enemy.</p>
 
 <div class="for_info_only">
     <p><strong>Example:</strong></p>
-<pre class="brush: python">{% if interpreter.slug == "js-node" %}
-findEnemy('B2', 'S', 'B4') == ['F', 2]
-{% else %}
-find_enemy('B2', 'S', 'B4') == ['F', 2]
-{% endif %}</pre>
+<pre class="brush: {% if is_js %}javascript{% else %}python{% endif %}">{% if is_js %}findEnemy{% else %}find_enemy{% endif %}('B2', 'S', 'B4') == ['F', 2]</pre>
 </div>
 
 <p>
@@ -49,12 +68,14 @@ find_enemy('B2', 'S', 'B4') == ['F', 2]
 <br />
 <p>
     <strong>How it is used:</strong>
-    <p>War-game design using hex-grid.</p>
+    <p>War-game design uses hex-grid.</p>
 </p>
 
 <p>
-    <strong>Precondition:</strong><br>
-    'A1' &le; coordinates &le; 'Z9'.<br>
-    direction in ('N', 'NE', 'SE', 'S', 'SW', 'NW').<br>
-    your coordinates &ne; enemy's coordinates.
+    <strong>Preconditions:</strong>
+    <ul>
+        <li>'A1' &le; coordinates &le; 'Z9';</li>
+        <li>direction in ('N', 'NE', 'SE', 'S', 'SW', 'NW');</li>
+        <li>your coordinates &ne; enemy's coordinates.</li>
+    </ul>
 </p>

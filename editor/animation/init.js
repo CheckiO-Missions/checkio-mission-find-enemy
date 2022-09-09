@@ -1,5 +1,5 @@
 ﻿//Dont change it
-requirejs(['ext_editor_io', 'jquery_190', 'raphael_210'],
+requirejs(['ext_editor_io2', 'jquery_190', 'raphael_210'],
     function (extIO, $) {
         function findEnemyCanvas(dom, dataInp, dataExp) {
             var color = {
@@ -128,11 +128,6 @@ requirejs(['ext_editor_io', 'jquery_190', 'raphael_210'],
         var $tryit;
 
         var io = new extIO({
-            multipleArguments: true,
-            functions: {
-                js: 'findEnemy',
-                python: 'find_enemy'
-            },
             animation: function($expl, data){
                 findEnemyCanvas(
                     $expl[0],
